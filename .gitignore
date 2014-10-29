@@ -1,0 +1,7 @@
+/eclipse-launch-profiles/
+/target/
+/.settings/
+/.classpath
+/.project
+/nbactions.xml
+/src/main/webapp/WEB-INF/alcidorine-v1.api
