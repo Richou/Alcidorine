@@ -12,6 +12,7 @@
 		<include path="/js/**" />
 		<include path="/img/**" />
 		<include path="/styles/**" />
+		<include path="/fonts/**" />
 	</static-files>
 	
 </appengine-web-app>

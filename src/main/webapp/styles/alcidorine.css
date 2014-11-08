@@ -1,0 +1,26 @@
+@font-face {font-family: computer-robot; src: url('/fonts/ComputerRobot.ttf');}
+
+body {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 16px; background: #f8f8f8;}
+
+nav { color: #FFF;}
+
+nav.large_menu { position:fixed; background: #232323; top: 0; left: 0; bottom: 0; width: 150px;}
+nav.large_menu > header { margin: 20px 0;}
+nav.large_menu > header div{ text-align: center; font-family: computer-robot; font-size: 35px; }
+nav.large_menu ul {list-style-type: none; padding: 0px; margin:25px 0;}
+nav.large_menu ul li {line-height: 20px; text-align: center; margin: 10px 0; padding: 5px; cursor:pointer;-o-transition:background 0.5s linear; -ms-transition:background 0.5s linear; -moz-transition:background 0.5s linear; -webkit-transition:background 0.5s linear; transition:background 0.5s linear;}
+nav.large_menu ul li:hover {background: #2e3038;}
+nav.large_menu ul li div.article_item_icon {width: 32px; height: 32px; background: url('/img/icons/article.png') no-repeat; margin: auto;}
+nav.large_menu ul li span {text-transform: uppercase; font-size: 0.85em; font-weight: bold;}
+
+nav.small_menu { position:fixed; background: #232323; top: 0; left: 0; right: 0; height: 70px; }
+nav.small_menu ul {list-style-type: none; background: #2e3038;width: 240px; margin: 0px; left: -240px; padding: 30px 0px; top: 70px; bottom: 0; position: fixed; overflow: auto;-o-transition:left 0.2s linear; -ms-transition:left 0.2s linear; -moz-transition:left 0.2s linear; -webkit-transition:left 0.2s linear; transition:left 0.2s linear;}
+nav.small_menu ul.show {left: 0;}
+nav.small_menu ul li {line-height: 20px; padding: 10px; cursor:pointer; margin: 10px 0;}
+nav.small_menu > header > span.small_menu_show {cursor: pointer; background: url('/img/design/menu_icon.png') no-repeat;width: 49px; height: 33px; background-size: 49px 33px; position: absolute; top: 17px;}
+nav.small_menu > header div {font-size: 50px; text-align: center; font-family: computer-robot;}
+
+div#container.large_menu {margin-left: 150px;}
+
+div#container.small_menu {margin-top: 75px;}
+
