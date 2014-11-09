@@ -25,7 +25,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 		$scope.global = new Object();
 	
 	}])
-	.controller('NavigationCtrl', ['$scope', '$log', '$window', 'IsOnMobileDevice', 'ROOT_URL', 'API_PREFIX', function($scope, $log, $window, IsOnMobileDevice, ROOT_URL, API_PREFIX){
+	.controller('NavigationCtrl', ['$scope', '$log', '$window', '$location', 'IsOnMobileDevice', 'ROOT_URL', 'API_PREFIX', function($scope, $log, $window, $location, IsOnMobileDevice, ROOT_URL, API_PREFIX){
 		
 		$scope.menuShowClass = false;
 		
@@ -39,12 +39,18 @@ var alcidorine = angular.module('alcidorineApp', [])
 			}
 		}
 		
-		$scope.navigateTo = function() {
-			alert('oui');
+		$scope.navigateTo = function(path) {
+			$window.location.href = path;
 		}
 		
 		$scope.showHideMenu = function() {
 			$scope.menuShowClass = !$scope.menuShowClass;
+			if($scope.menuShowClass) {
+				var backgroundElement = $('<div id="disabledBackground"></div>');
+				$("#docked_menu").append(backgroundElement);
+			} else {
+				$("#disabledBackground").remove();
+			}
 		}
 		
 		$scope.resizeListener();

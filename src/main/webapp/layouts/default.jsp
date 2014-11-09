@@ -15,28 +15,29 @@
 </head>
 
 <body>
-<nav data-resize data-ng-controller="NavigationCtrl" data-ng-class="global.menuClass">
+<nav id="docked_menu" data-resize data-ng-controller="NavigationCtrl" data-ng-class="global.menuClass">
 	<header>
 		<span data-ng-show="global.isOnMobileDevice" class="small_menu_show" data-ng-click="showHideMenu()"></span>
 		<div>heanoria</div>
 	</header>
 	<ul data-ng-class="menuShowClass ? 'show' : ''">
-		<li data-ng-click="navigateTo()">
+		<li data-ng-click="navigateTo('${contextPath}/')">
 			<div class="article_item_icon"></div>
 			<span>Articles</span>
 		</li>
-		<li>
+		<li data-ng-click="navigateTo('${contextPath}/aide-memoire')">
 			
 			<span>Aide mémoire</span>
 		</li>
-		<li>
+		<li data-ng-click="navigateTo('${contextPath}/campagnes')">
 			<span>Campagnes</span>
 		</li>
 	</ul>
 </nav>
 <div id="container" data-ng-class="global.menuClass">
 <decorator:body></decorator:body>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>
 <script src="${contextPath}/js/alcidorine.js" ></script>
 <script type="text/javascript">
 	alcidorine.constant('ROOT_URL', '${contextPath}');

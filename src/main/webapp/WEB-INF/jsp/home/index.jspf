@@ -1,4 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <title>Bienvenue</title>
 <body>
-
+	<section>
+<c:forEach var="article" items="${articles}">
+		<article>
+			<header>${article.title}</header>
+			<time datetime="${article.date}"><fmt:formatDate pattern="dd MMMM yyyy - HH:mm:ss" value="${article.date}" /></time>
+			${article.content}
+		</article>
+</c:forEach>
+	</section>
 </body>

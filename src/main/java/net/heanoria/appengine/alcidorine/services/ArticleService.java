@@ -13,7 +13,7 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 
 @Service("articleService")
-@Api(name = "alcidorine", version = "v1", description = "Article API service")
+@Api(name = "alcidorine", version = "v1", description = "Alcidorine API service")
 public class ArticleService {
 
 	private ArticleDao articleDao = new ArticleDao();
