@@ -41,7 +41,11 @@
 <script src="${contextPath}/js/alcidorine.js" ></script>
 <script type="text/javascript">
 	alcidorine.constant('ROOT_URL', '${contextPath}');
+	function init() {
+		window.init();
+	}
 </script>
+<script src="//apis.google.com/js/client.js?onload=init"></script>
 </div>
 </body>
 </html>
