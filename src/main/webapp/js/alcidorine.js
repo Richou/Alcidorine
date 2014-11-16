@@ -21,6 +21,23 @@ var alcidorine = angular.module('alcidorineApp', [])
 			});
 		}
 	})
+	.filter('truncate', function () {
+        return function (text, length, end) {
+            if (isNaN(length))
+                length = 10;
+
+            if (end === undefined)
+                end = "...";
+
+            if (text.length <= length || text.length - end.length <= length) {
+                return text;
+            }
+            else {
+                return String(text).substring(0, length-end.length) + end;
+            }
+
+        };
+    })
 	.controller('AppCtrl', ['$scope', '$log', '$http', '$window', 'ROOT_URL', 'API_PREFIX', function ($scope, $log, $http, $window, ROOT_URL, API_PREFIX){
 		
 		$scope.global = new Object();
@@ -29,6 +46,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 		
 		$scope.global.loadEndpointLib = function() {
 			gapi.client.load('alcidorine', 'v1', function(){
+				console.log("loaded");
 				$scope.$apply($scope.changeEndpointLibStatus(true));
 			}, ROOT_URL + "/" + API_PREFIX);
 		}
@@ -82,10 +100,17 @@ var alcidorine = angular.module('alcidorineApp', [])
 			})
 		}
 		
+		$scope.view = function(articleId) {
+			console.log(articleId);
+		}
+		
 		$scope.fetchArticles = function(items) {
 			$scope.articles = items;
 			for(var i = 0; i < $scope.articles.length; i++) {
 				$scope.articles[i].content = $sce.trustAsHtml($scope.articles[i].content);
+				if($scope.articles[i].image == null) {
+					$scope.articles[i].image = "/img/design/article_no_image.png";
+				}
 			}
 		}
 		

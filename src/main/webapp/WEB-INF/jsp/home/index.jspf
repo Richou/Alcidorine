@@ -3,10 +3,9 @@
 <title>Bienvenue</title>
 <body>
 	<section data-ng-controller="ArticleCtrl">
-		<article data-ng-repeat="article in articles">
-			<header>{{article.title}}</header>
-			<time datetime="{{article.date}}">{{article.date | date : 'dd MMMM yyyy - HH:mm:ss'}}</time>
-			<span data-ng-bind-html="article.content">{{article.content}}</span>
+		<article data-ng-repeat="article in articles" data-ng-click="view(article.id)">
+			<img data-ng-src="{{article.image}}" alt="image" />
+			<footer title="{{article.title}}">{{article.title | truncate:20}}</footer>
 		</article>
 	</section>
 </body>
