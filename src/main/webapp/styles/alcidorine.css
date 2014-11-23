@@ -34,6 +34,6 @@ div#container > section > article > header {font-size: 1.1em; font-weight: bold;
 div#container > section > article > time {font-size: 0.75em; font-style: italic; }
 div#container > section > article > footer { background: #3f3f3f; color: #fff; min-height: 30px; padding-top: 12px;}
 
-div#container p:first-child { text-align: center; font-size: 1.1em; font-style: italic; margin-bottom: 20px;}
-div#container p:first-child::before {position: relative; content: url('/img/design/dq_left.png');top: -10px; z-index: -1;}
-div#container p:first-child::after {position: relative; content: url('/img/design/dq_right.png');top: 15px; z-index: -1;}
+div#container header:first-child p:first-child { text-align: center; font-size: 1.1em; font-style: italic; margin-bottom: 20px;}
+div#container header:first-child p:first-child::before {position: relative; content: url('/img/design/dq_left.png');top: -10px; z-index: -1;}
+div#container header:first-child p:first-child::after {position: relative; content: url('/img/design/dq_right.png');top: 15px; z-index: -1;}

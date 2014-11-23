@@ -1,0 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<title>Bienvenue</title>
+<body>
+	<ng-include src="'${contextPath}/includes/quotations.jspf'"></ng-include>
+	<article data-ng-show="global.endpointLibLoaded">
+		${article.title}
+	</article>
+</body>

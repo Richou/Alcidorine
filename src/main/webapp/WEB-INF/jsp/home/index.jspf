@@ -2,8 +2,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <title>Bienvenue</title>
 <body>
+	<div ng-include="'${contextPath}/includes/quotations.jspf'"></div>
 	<section data-ng-controller="ArticleCtrl">
-		<article data-ng-repeat="article in articles" data-ng-click="view(article.id)">
+		<article data-ng-repeat="article in articles" data-ng-click="view(article.id, article.title)">
 			<img data-ng-src="{{article.image}}" alt="image" />
 			<footer title="{{article.title}}">{{article.title | truncate:20}}</footer>
 		</article>

@@ -1,0 +1,4 @@
+<header data-ng-show="global.endpointLibLoaded && quotation != null && !global.isOnMobileDevice">
+	<p>{{quotation.quote}}</p>
+	<hr />
+</header>

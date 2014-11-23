@@ -11,4 +11,8 @@
 		<from>/campagnes</from>
 		<to>/campaign.do</to>	    
 	</rule>
+	<rule>
+		<from>/articles/([0-9]+)/[a-z\-]+</from>
+		<to>/articles/view.do?id=$1</to>	    
+	</rule>
 </urlrewrite>

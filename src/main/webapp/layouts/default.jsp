@@ -41,9 +41,7 @@
 		</li>
 	</ul>
 </nav>
-<div id="container" data-ng-class="global.menuClass" data-ng-show="global.endpointLibLoaded && quotation != null">
-	<p>{{quotation.quote}}</p>
-	<hr />
+<div id="container" data-ng-class="global.menuClass">
 <decorator:body></decorator:body>
 </div>
 </body>

@@ -8,6 +8,11 @@ import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Article {
+	
+	public static final String ARTICLE_ID_FIELD = "id";
+	public static final String ARTICLE_TITLE_FIELD = "title";
+	public static final String ARTICLE_DATE_FIELD = "date";
+	public static final String ARTICLE_CONTENT_FIELD = "content";
 
 	@Id
 	private Long id;
