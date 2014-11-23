@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
 <link rel="stylesheet" type="text/css" href="${contextPath}/styles/alcidorine.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
 <title><decorator:title /> - heanoria</title>
 <decorator:head></decorator:head>
 </head>
@@ -20,9 +20,6 @@
 <script src="${contextPath}/js/alcidorine.js" ></script>
 <script type="text/javascript">
 	alcidorine.constant('ROOT_URL', '${contextPath}');
-	function init() {
-		window.init();
-	}
 </script>
 <script src="//apis.google.com/js/client.js?onload=init"></script>
 <nav id="docked_menu" data-resize data-ng-controller="NavigationCtrl" data-ng-class="global.menuClass">
@@ -44,7 +41,9 @@
 		</li>
 	</ul>
 </nav>
-<div id="container" data-ng-class="global.menuClass">
+<div id="container" data-ng-class="global.menuClass" data-ng-show="global.endpointLibLoaded && quotation != null">
+	<p>{{quotation.quote}}</p>
+	<hr />
 <decorator:body></decorator:body>
 </div>
 </body>

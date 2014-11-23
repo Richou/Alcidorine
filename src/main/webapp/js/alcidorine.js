@@ -1,3 +1,7 @@
+function init() {
+	window.init();
+}
+
 var alcidorine = angular.module('alcidorineApp', [])
 	.value('API_PREFIX', '_ah/api')
 	.value('API_ALCIDORINE_PREFIX', '_ah/api/alcidorine/v1')
@@ -41,6 +45,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 	.controller('AppCtrl', ['$scope', '$log', '$http', '$window', 'ROOT_URL', 'API_PREFIX', function ($scope, $log, $http, $window, ROOT_URL, API_PREFIX){
 		
 		$scope.global = new Object();
+		$scope.quotation = null;
 		
 		$scope.global.endpointLibLoaded = false;
 		
@@ -51,9 +56,21 @@ var alcidorine = angular.module('alcidorineApp', [])
 			}, ROOT_URL + "/" + API_PREFIX);
 		}
 		
+		$scope.getRandomQuotation = function() {
+			gapi.client.alcidorine.alcidorine.quotations.getRandom().execute(function(resp) {
+				$scope.quotation = resp;
+			})
+		}
+		
 		$scope.changeEndpointLibStatus = function(newStatus) {
 			$scope.global.endpointLibLoaded = newStatus;
 		}
+		
+		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
+			if(newValue) {
+				$scope.getRandomQuotation();
+			}
+		})
 		
 		$window.init = function() {
 			$scope.$apply($scope.global.loadEndpointLib);
