@@ -13,7 +13,7 @@
 		<include path="/img/**" />
 		<include path="/styles/**" />
 		<include path="/fonts/**" />
-		<include path="/includes/**" />
+		<include path="/modules/**" />
 	</static-files>
 	
 </appengine-web-app>

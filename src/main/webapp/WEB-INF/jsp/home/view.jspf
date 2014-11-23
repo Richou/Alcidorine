@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <title>Bienvenue</title>
 <body>
-	<ng-include src="'${contextPath}/includes/quotations.jspf'"></ng-include>
+	<ng-include src="'${contextPath}/modules/quotations.jspf'"></ng-include>
 	<article data-ng-show="global.endpointLibLoaded">
 		${article.title}
 	</article>

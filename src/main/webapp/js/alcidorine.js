@@ -246,3 +246,6 @@ var alcidorine = angular.module('alcidorineApp', [])
 		})
 		
 	}])
+	.controller('MemoCtrl', ['$scope', '$log', function($scope, $log){
+		$scope.memos = [];
+	}])

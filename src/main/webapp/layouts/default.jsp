@@ -33,10 +33,11 @@
 			<span>Articles</span>
 		</li>
 		<li data-ng-click="navigateTo('${contextPath}/aide-memoire')">
-			
+			<div class="memo_item_icon"></div>
 			<span>Aide mémoire</span>
 		</li>
 		<li data-ng-click="navigateTo('${contextPath}/campagnes')">
+			<div class="campaign_item_icon"></div>
 			<span>Campagnes</span>
 		</li>
 	</ul>
