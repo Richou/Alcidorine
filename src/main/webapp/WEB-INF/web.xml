@@ -64,7 +64,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>net.heanoria.appengine.alcidorine.services.ArticleService,net.heanoria.appengine.alcidorine.services.CampaignService,net.heanoria.appengine.alcidorine.services.QuotationService</param-value>
+   <param-value>net.heanoria.appengine.alcidorine.services.ArticleService,net.heanoria.appengine.alcidorine.services.CampaignService,net.heanoria.appengine.alcidorine.services.MemoService,net.heanoria.appengine.alcidorine.services.QuotationService</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>

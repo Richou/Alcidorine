@@ -248,4 +248,15 @@ var alcidorine = angular.module('alcidorineApp', [])
 	}])
 	.controller('MemoCtrl', ['$scope', '$log', function($scope, $log){
 		$scope.memos = [];
+		
+		$scope.getMemos = function(){
+			gapi.client.alcidorine.alcidorine.memo
+		}
+		
+		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
+			if(newValue) {
+				console.log("getmemos");
+				$scope.getMemos();
+			}
+		})
 	}])

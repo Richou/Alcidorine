@@ -2,4 +2,10 @@
 <title>Aide mémoire</title>
 <body>
 	<ng-include src="'${contextPath}/modules/quotations.jspf'"></ng-include>
+	<section data-ng-controller="MemoCtrl">
+		<article data-ng-repeat="memo in memos" data-ng-click="view(memo.id, memo.title)">
+			<img data-ng-src="{{memo.image}}" alt="image" />
+			<footer title="{{memo.title}}">{{memo.title | truncate:20}}</footer>
+		</article>
+	</section>
 </body>
