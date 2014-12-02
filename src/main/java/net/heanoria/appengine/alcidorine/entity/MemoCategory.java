@@ -1,13 +1,14 @@
 package net.heanoria.appengine.alcidorine.entity;
 
-import static net.heanoria.appengine.alcidorine.entity.Memo.MEMO_CATEGORY_FIELD;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.jdo.annotations.Persistent;
-
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Load;
 
 @Entity
 public class MemoCategory {
@@ -20,23 +21,21 @@ public class MemoCategory {
 	
 	/* Fields */
 	
-	@Id
-	private Long id;
+	@Id private Long id;
 	
-	private String title;
-	private String description;
+	@Index private String title;
+	@Index private String description;
 	
-	/* Relationships */
+	/* RelationShips */
 	
-	@Persistent
-	private MemoCategory parent;
+	@Load
+	@Index
+	private Ref<MemoCategory> parent;
 	
-	@Persistent(mappedBy = MEMOCAT_PARENT_FIELD)
-	private List<MemoCategory> children;
+	@Load
+	@Index
+	private Set<Ref<MemoCategory>> children;
 	
-	@Persistent(mappedBy = MEMO_CATEGORY_FIELD) 
-	private List<Memo> memos;
-
 	/* Getters & Setters */
 
 	public Long getId() {
@@ -64,27 +63,29 @@ public class MemoCategory {
 	}
 
 	public MemoCategory getParent() {
-		return parent;
+		if(parent != null)
+			return parent.get();
+		return null;
 	}
 
 	public void setParent(MemoCategory parent) {
-		this.parent = parent;
+		this.parent = Ref.create(parent);
 	}
 
-	public List<MemoCategory> getChildren() {
-		return children;
+	public Set<MemoCategory> getChildren() {
+		if(children == null) return null;
+		Set<MemoCategory> temp = new HashSet<MemoCategory>();
+		for(Ref<MemoCategory> child : this.children) {
+			temp.add(child.get());
+		}
+		return temp;
 	}
 
 	public void setChildren(List<MemoCategory> children) {
-		this.children = children;
-	}
-
-	public List<Memo> getMemos() {
-		return memos;
-	}
-
-	public void setMemos(List<Memo> memos) {
-		this.memos = memos;
+		if(this.children == null) this.children = new HashSet<Ref<MemoCategory>>();
+		for(MemoCategory child : children) {
+			this.children.add(Ref.create(child));
+		}
 	}
 	
 }
