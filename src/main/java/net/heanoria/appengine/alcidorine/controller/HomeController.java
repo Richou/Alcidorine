@@ -31,4 +31,9 @@ public class HomeController {
 		model.addAttribute("article", article);
 		return "home/view";
 	}
+
+	public void setArticleService(ArticleService articleService) {
+		this.articleService = articleService;
+	}
+	
 }
