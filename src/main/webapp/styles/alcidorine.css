@@ -39,3 +39,9 @@ div#container > section > article > footer { background: #3f3f3f; color: #fff; m
 div#container header:first-child p:first-child { text-align: center; font-size: 1.1em; font-style: italic; margin-bottom: 20px;}
 div#container header:first-child p:first-child::before {position: relative; content: url('/img/design/dq_left.png');top: -10px; z-index: -1;}
 div#container header:first-child p:first-child::after {position: relative; content: url('/img/design/dq_right.png');top: 15px; z-index: -1;}
+
+form input[type="submit"] {height: 32px; font-weight: bold;}
+form input.b-g { padding: 0 8px; color: #fff; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 0; text-shadow: 0 1px rgba(0,0,0,0.1); font-size: 12px; margin: 10px auto; display: block;}
+form input.button-bg { background-image: -webkit-linear-gradient(top,#7db2de,#5D84A6); background-image: -moz-linear-gradient(top,#7db2de,#5D84A6); background-image: -ms-linear-gradient(top,#7db2de,#5D84A6); background-image: -o-linear-gradient(top,#7db2de,#5D84A6); }
+form input.button-bg:hover {background-image: -webkit-linear-gradient(top,#6b97bd,#486882); background-image: -moz-linear-gradient(top,#6b97bd,#486882); background-image: -ms-linear-gradient(top,#6b97bd,#486882); background-image: -o-linear-gradient(top,#6b97bd,#486882);}
+form textarea {width: 100%; min-height: 750px;}

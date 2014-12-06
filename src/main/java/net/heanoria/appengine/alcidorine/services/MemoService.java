@@ -10,4 +10,6 @@ public interface MemoService {
 	@Logging
 	public List<MemoCategory> getMemoTopCategories();
 	
+	public MemoCategory createMemoCategory(MemoCategory memoCat);
+	
 }

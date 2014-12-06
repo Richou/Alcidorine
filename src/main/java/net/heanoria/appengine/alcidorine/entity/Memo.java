@@ -3,6 +3,7 @@ package net.heanoria.appengine.alcidorine.entity;
 import com.google.appengine.api.datastore.Blob;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Memo {
@@ -16,9 +17,12 @@ public class Memo {
 	@Id
 	private Long id;
 	
+	@Index
 	private MemoCategory category;
 	
+	@Index
 	private String title;
+	@Index
 	private String content;
 	private Blob image;
 	

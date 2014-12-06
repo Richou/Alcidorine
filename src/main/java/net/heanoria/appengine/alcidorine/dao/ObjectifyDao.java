@@ -20,6 +20,10 @@ public class ObjectifyDao<T>{
 		return get(savedEntity.getId());
 	}
 	
+	public void saveAll(List<T> entities) {
+		ofy().save().entities(entities).now();
+	}
+	
 	public List<T> listAll() {
 		Query<T> all = ofy().load().type(this.clazz);
 		return all.list();

@@ -157,7 +157,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 		
 		$scope.global.loadEndpointLib = function() {
 			gapi.client.load('alcidorine', 'v1', function(){
-				console.log("loaded");
+				console.log("google api loaded");
 				$scope.$apply($scope.changeEndpointLibStatus(true));
 			}, ROOT_URL + "/" + API_PREFIX);
 		}
@@ -240,7 +240,6 @@ var alcidorine = angular.module('alcidorineApp', [])
 		
 		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
 			if(newValue) {
-				console.log("getarticles");
 				$scope.getArticles();
 			}
 		})
@@ -248,15 +247,33 @@ var alcidorine = angular.module('alcidorineApp', [])
 	}])
 	.controller('MemoCtrl', ['$scope', '$log', function($scope, $log){
 		$scope.memos = [];
+		$scope.topCategories = [];
 		
-		$scope.getMemos = function(){
-			gapi.client.alcidorine.alcidorine.memo
+		$scope.getTopCategories = function() {
+			gapi.client.alcidorine.alcidorine.memos.categories.listTop().execute(function(resp) {
+				$scope.$apply($scope.fetchCategories(resp.items));
+			});
+		}
+		
+		$scope.fetchCategories = function(items) {
+			console.log(items);
+			$scope.topCategories = items;
 		}
 		
 		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
 			if(newValue) {
-				console.log("getmemos");
-				$scope.getMemos();
+				$scope.getTopCategories();
 			}
 		})
+	}])
+	.controller('AdminCtrl', ['$scope', '$log', function($scope, $log) {
+		$scope.json;
+		
+		$scope.jsonSubmit = function() {
+			var jsonObj = JSON.parse($scope.json);
+			var categories = {items : jsonObj.items};
+			gapi.client.alcidorine.alcidorine.memos.categories.createAll(categories).execute(function(){
+				console.log("Ok");
+			});
+		}
 	}])

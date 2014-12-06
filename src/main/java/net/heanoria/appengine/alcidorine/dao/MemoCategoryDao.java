@@ -18,7 +18,7 @@ public class MemoCategoryDao extends ObjectifyDao<MemoCategory>{
 	}
 	
 	public List<MemoCategory> fetchTopCategories() {
-		return ofy().load().type(MemoCategory.class).filter(MemoCategory.MEMOCAT_PARENT_FIELD, null).list();
+		return ofy().load().type(MemoCategory.class).filter(MemoCategory.MEMOCAT_TOP_PARENT_FIELD, true).list();
 	}
 
 }

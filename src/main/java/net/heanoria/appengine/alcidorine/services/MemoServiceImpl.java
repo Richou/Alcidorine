@@ -3,16 +3,18 @@ package net.heanoria.appengine.alcidorine.services;
 import static net.heanoria.appengine.alcidorine.entity.MemoCategory.MEMOCAT_ID_FIELD;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
+import java.util.logging.Logger;
 
 import net.heanoria.appengine.alcidorine.aspects.Logging;
 import net.heanoria.appengine.alcidorine.dao.MemoCategoryDao;
 import net.heanoria.appengine.alcidorine.dao.MemoDao;
 import net.heanoria.appengine.alcidorine.entity.Memo;
 import net.heanoria.appengine.alcidorine.entity.MemoCategory;
+import net.heanoria.appengine.alcidorine.entity.MemoCategoryWrapper;
 import net.heanoria.appengine.alcidorine.exceptions.EntityCreationException;
 import net.heanoria.appengine.alcidorine.exceptions.EntityFetchException;
+
+import org.springframework.stereotype.Service;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -23,6 +25,8 @@ import com.google.api.server.spi.config.Named;
 @Api(name = "alcidorine", version = "v1", description = "Alcidorine API service")
 public class MemoServiceImpl implements MemoService{
 
+	private final Logger logger = Logger.getLogger(MemoServiceImpl.class.getName());
+	
 	private MemoDao memoDao = new MemoDao();
 	private MemoCategoryDao memoCategoryDao = new MemoCategoryDao();
 	
@@ -46,7 +50,13 @@ public class MemoServiceImpl implements MemoService{
 	public MemoCategory createMemoCategory(MemoCategory memoCat) {
 		memoCat = memoCategoryDao.save(memoCat);
 		if(memoCat != null && memoCat.getId() != null) return memoCat;
+		logger.severe("Cannot create Memo Category");
 		throw new EntityCreationException("Cannot create MemoCategory");
+	}
+	
+	@ApiMethod(name = "alcidorine.memos.categories.createAll", path = "memos/categories/createAll", httpMethod = HttpMethod.POST)
+	public void createAllMemoCategories(MemoCategoryWrapper memoCategoryWrapper) {
+		memoCategoryDao.saveAll(memoCategoryWrapper.getItems());
 	}
 	
 	@ApiMethod(name = "alcidorine.memos.categories.view", path = "memos/categories/view/{id}", httpMethod = HttpMethod.GET)
