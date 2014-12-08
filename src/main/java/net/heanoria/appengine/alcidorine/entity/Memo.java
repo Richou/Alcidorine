@@ -18,9 +18,6 @@ public class Memo {
 	private Long id;
 	
 	@Index
-	private MemoCategory category;
-	
-	@Index
 	private String title;
 	@Index
 	private String content;
@@ -31,12 +28,6 @@ public class Memo {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public MemoCategory getCategory() {
-		return category;
-	}
-	public void setCategory(MemoCategory category) {
-		this.category = category;
 	}
 	public String getTitle() {
 		return title;

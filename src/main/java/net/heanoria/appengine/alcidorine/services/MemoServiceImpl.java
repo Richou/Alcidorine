@@ -1,5 +1,6 @@
 package net.heanoria.appengine.alcidorine.services;
 
+import static net.heanoria.appengine.alcidorine.entity.Memo.MEMO_ID_FIELD;
 import static net.heanoria.appengine.alcidorine.entity.MemoCategory.MEMOCAT_ID_FIELD;
 
 import java.util.List;
@@ -35,6 +36,23 @@ public class MemoServiceImpl implements MemoService{
 		return memoDao.listAll();
 	}
 	
+	@ApiMethod(name = "alcidorine.memos.create", path = "memos/create", httpMethod = HttpMethod.POST)
+	public Memo createMemo(Memo memo) {
+		memo = memoDao.save(memo);
+		if(memo != null && memo.getId() != null) return memo;
+		logger.severe("Cannot create Memo");
+		throw new EntityCreationException("Cannot create Memo");
+	}
+
+	@ApiMethod(name = "alcidorine.memos.view", path = "memos/view/{id}", httpMethod = HttpMethod.GET)
+	public Memo getMemoById(@Named(MEMO_ID_FIELD) Long id) {
+		Memo memo = memoDao.get(id);
+		if(memo == null) {
+			throw new EntityFetchException("Cannot find memo with id ['" + id + "']");
+		}
+		return memo;	
+	}
+	
 	@ApiMethod(name = "alcidorine.memos.categories.list", path = "memos/categories/list", httpMethod = HttpMethod.GET)
 	public List<MemoCategory> getMemoCategories() {
 		return memoCategoryDao.listAll();
@@ -63,7 +81,7 @@ public class MemoServiceImpl implements MemoService{
 	public MemoCategory getMemoCategoryById(@Named(MEMOCAT_ID_FIELD) Long id) {
 		MemoCategory memoCategory = memoCategoryDao.get(id);
 		if(memoCategory == null) {
-			throw new EntityFetchException("Cannot find article with id ['" + id + "']");
+			throw new EntityFetchException("Cannot find memo category with id ['" + id + "']");
 		}
 		return memoCategory;		
 	}

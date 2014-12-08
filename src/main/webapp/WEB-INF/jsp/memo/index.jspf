@@ -2,9 +2,9 @@
 <title>Aide mémoire</title>
 <body>
 	<ng-include src="'${contextPath}/modules/quotations.jspf'"></ng-include>
-	<section data-ng-controller="MemoCtrl">
-		<article data-ng-repeat="topCategorie in topCategories" class="parent">
-			<footer title="{{topCategorie.title}}">{{topCategorie.title | truncate:20}}</footer>
-		</article>
-	</section>
+	<div data-ng-controller="MemoCtrl">
+		<div id="memosContainer">
+	        <div data-ng-repeat="node in topCategories" data-ng-include="'${contextPath}/modules/categories.jspf'"></div>
+		</div>
+	</div>
 </body>

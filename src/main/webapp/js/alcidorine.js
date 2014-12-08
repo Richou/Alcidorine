@@ -15,7 +15,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 			formatTextForUrlRewrite : function(input) {
 				input = input.toLowerCase();
 	            input = input.replace(new RegExp(/ +\.{3}/g),"");
-	            input = input.replace(new RegExp(/[:,!%]/g)," ");
+	            input = input.replace(new RegExp(/[:,'!%]/g)," ");
 	            input = input.replace(new RegExp(/ +/g),"-");
 	            input = input.replace(new RegExp(/\./g),"");
 	            return this.removeDiacritics(input);
@@ -130,6 +130,13 @@ var alcidorine = angular.module('alcidorineApp', [])
 			});
 		}
 	})
+	.directive('treeview', ['$log', '$compile', function($log, $compile) {
+		return {
+			restrict : 'A',
+			scope : {treeModel:'=treeview'},
+			templateUrl: '/modules/categories.jspf'
+		}
+	}])
 	.filter('truncate', function () {
         return function (text, length, end) {
             if (isNaN(length))
@@ -157,7 +164,6 @@ var alcidorine = angular.module('alcidorineApp', [])
 		
 		$scope.global.loadEndpointLib = function() {
 			gapi.client.load('alcidorine', 'v1', function(){
-				console.log("google api loaded");
 				$scope.$apply($scope.changeEndpointLibStatus(true));
 			}, ROOT_URL + "/" + API_PREFIX);
 		}
@@ -245,7 +251,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 		})
 		
 	}])
-	.controller('MemoCtrl', ['$scope', '$log', function($scope, $log){
+	.controller('MemoCtrl', ['$scope', '$log', '$window', 'ROOT_URL', 'StringUtil', function($scope, $log, $window, ROOT_URL, StringUtil){
 		$scope.memos = [];
 		$scope.topCategories = [];
 		
@@ -255,8 +261,11 @@ var alcidorine = angular.module('alcidorineApp', [])
 			});
 		}
 		
+		$scope.view = function(memoryId, memoryTitle) {
+			$window.location.href = ROOT_URL + "/aide-memoire/" + memoryId + "/" + StringUtil.formatTextForUrlRewrite(memoryTitle);
+		}
+		
 		$scope.fetchCategories = function(items) {
-			console.log(items);
 			$scope.topCategories = items;
 		}
 		

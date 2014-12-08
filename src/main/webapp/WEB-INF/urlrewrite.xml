@@ -4,7 +4,7 @@
 
 <urlrewrite>
 	<rule>
-	    <from>/aide-memoire</from>
+	    <from>/aide-memoire$</from>
 	    <to>/memos.do</to>
 	</rule>
 	<rule>
@@ -18,5 +18,9 @@
 	<rule>
 		<from>/articles/([0-9]+)/[a-z\-]+</from>
 		<to>/articles/view.do?id=$1</to>	    
+	</rule>
+	<rule>
+		<from>/aide-memoire/([0-9]+)/[a-z0-9\-]+</from>
+		<to>/memos/view.do?id=$1</to>	    
 	</rule>
 </urlrewrite>

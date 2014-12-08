@@ -33,6 +33,10 @@ public class MemoCategory {
 	@Index
 	private Set<Ref<MemoCategory>> children;
 	
+	@Load
+	@Index
+	private Set<Ref<Memo>> memories;
+	
 	/* Getters & Setters */
 
 	public Long getId() {
@@ -84,6 +88,23 @@ public class MemoCategory {
 		if(this.children == null) this.children = new HashSet<Ref<MemoCategory>>();
 		for(MemoCategory child : children) {
 			this.children.add(Ref.create(child));
+		}
+		return this;
+	}
+
+	public Set<Memo> getMemories() {
+		if(this.memories == null) return null;
+		Set<Memo> temp = new HashSet<Memo>();
+		for(Ref<Memo> memo : this.memories) {
+			temp.add(memo.get());
+		}
+		return temp;
+	}
+
+	public MemoCategory setMemories(Set<Memo> memories) {
+		if(this.memories == null) this.memories = new HashSet<Ref<Memo>>();
+		for(Memo memo : memories) {
+			this.memories.add(Ref.create(memo));
 		}
 		return this;
 	}
