@@ -4,9 +4,9 @@
 <body>
 	<ng-include src="'${contextPath}/modules/quotations.jspf'"></ng-include>
 	<section data-ng-controller="ArticleCtrl">
-		<article class="thumbnail" data-ng-repeat="article in articles" data-ng-click="view(article.id, article.title)">
+		<div class="thumbnail" data-ng-repeat="article in articles" data-ng-click="view(article.id, article.title)">
 			<img data-ng-src="{{article.image}}" alt="image" />
 			<footer title="{{article.title}}">{{article.title | truncate:20}}</footer>
-		</article>
+		</div>
 	</section>
 </body>
