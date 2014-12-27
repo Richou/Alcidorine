@@ -35,7 +35,7 @@
 	<!-- Resolves view names to protected .jsp resources within the /WEB-INF/views directory -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"/>
-		<property name="suffix" value=".jspf"/>
+		<property name="suffix" value=".jsp"/>
 	</bean>
     
    	<context:component-scan base-package="net.heanoria.appengine.alcidorine"/>

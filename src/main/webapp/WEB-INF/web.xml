@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.5"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<welcome-file-list>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
@@ -39,36 +42,46 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
-	
+
 	<filter>
-	    <filter-name>UrlRewriteFilter</filter-name>
-	    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
 	</filter>
 	<filter-mapping>
-	    <filter-name>UrlRewriteFilter</filter-name>
-	    <url-pattern>/*</url-pattern>
-	    <dispatcher>REQUEST</dispatcher>
-	    <dispatcher>FORWARD</dispatcher>
-	    <dispatcher>ERROR</dispatcher>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
-	
+
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
 			<trim-directive-whitespaces>true</trim-directive-whitespaces>
 		</jsp-property-group>
 	</jsp-config>
-	
- <servlet>
-  <servlet-name>SystemServiceServlet</servlet-name>
-  <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
-  <init-param>
-   <param-name>services</param-name>
-   <param-value>net.heanoria.appengine.alcidorine.services.ArticleServiceImpl,net.heanoria.appengine.alcidorine.services.CampaignService,net.heanoria.appengine.alcidorine.services.MemoServiceImpl,net.heanoria.appengine.alcidorine.services.QuotationService</param-value>
-  </init-param>
- </servlet>
- <servlet-mapping>
-  <servlet-name>SystemServiceServlet</servlet-name>
-  <url-pattern>/_ah/spi/*</url-pattern>
- </servlet-mapping>
+
+	<servlet>
+		<servlet-name>SystemServiceServlet</servlet-name>
+		<servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value>net.heanoria.appengine.alcidorine.services.ArticleServiceImpl,net.heanoria.appengine.alcidorine.services.CampaignService,net.heanoria.appengine.alcidorine.services.MemoServiceImpl,net.heanoria.appengine.alcidorine.services.QuotationService</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SystemServiceServlet</servlet-name>
+		<url-pattern>/_ah/spi/*</url-pattern>
+	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>profile</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
 </web-app>
