@@ -20,7 +20,7 @@ public class MemoController {
 	
 	@RequestMapping(value = "/memos.do", method = RequestMethod.GET)
 	public String doMemosPage(ModelMap model) {
-		return "memo/home";
+		return "memo/index";
 	}
 	
 	@RequestMapping(value = "/memos/view.do", method = RequestMethod.GET)

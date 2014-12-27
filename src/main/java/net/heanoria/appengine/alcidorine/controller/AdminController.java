@@ -11,6 +11,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/index.do", method = RequestMethod.GET)
 	public String doAdminHome() {
-		return "admin/home";
+		return "admin/index";
 	}
 }

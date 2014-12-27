@@ -12,6 +12,6 @@ public class CampaignController {
 	@RequestMapping(value = "/campaign.do", method = RequestMethod.GET)
 	public String doHome() {
 		
-		return "campaign/home";
+		return "campaign/index";
 	}
 }
