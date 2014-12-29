@@ -5,6 +5,7 @@
 <body>
 	<ng-include src="'${contextPath}/modules/quotations.jspf'"></ng-include>
 	<article data-ng-show="global.endpointLibLoaded">
-		${article.title}
+		<header>${article.title} - <time datetime="${article.date}"><fmt:formatDate value="${article.date}" pattern="'Le ' EEEE dd MMMM yyyy" /></time></header>
+		${article.content}
 	</article>
 </body>
