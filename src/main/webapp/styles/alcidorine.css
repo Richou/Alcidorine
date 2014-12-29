@@ -40,7 +40,7 @@ div#container header:first-child p:first-child { text-align: center; font-size: 
 div#container header:first-child p:first-child::before {position: relative; content: url('/img/design/dq_left.png');top: -10px; z-index: -1;}
 div#container header:first-child p:first-child::after {position: relative; content: url('/img/design/dq_right.png');top: 15px; z-index: -1;}
 
-div#container article {padding: 10px 0 0 0;}
+div#container article {padding: 10px 0 0 0; text-align: justify;}
 div#container article header {font-weight: bold;}
 div#container article header time {font-size: 0.8em; font-style: italic; font-weight: normal;}
 
