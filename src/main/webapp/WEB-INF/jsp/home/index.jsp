@@ -5,9 +5,13 @@
 <body>
 	<ng-include src="'${contextPath}/modules/quotations.jspf'"></ng-include>
 	<section data-ng-controller="ArticleCtrl">
-		<div class="thumbnail" data-ng-repeat="article in articles" data-ng-click="view(article.id, article.title)">
+		<div data-ng-class="global.isOnMobileDevice ? 'large_thumbnail' : 'small_thumbnail'" data-ng-repeat="article in articles" data-ng-click="view(article.id, article.title)">
 			<img data-ng-src="{{article.image}}" alt="image" />
-			<footer title="{{article.title}}">{{article.title | truncate:20}}</footer>
+			<footer data-ng-if="!global.isOnMobileDevice" title="{{article.title}}">{{article.title | truncate:20}}</footer>
+			<div data-ng-if="global.isOnMobileDevice">
+				<header title="{{article.title}}">{{article.title}}</header>
+				<p>{{article.content | stripHtmlTags | truncate:120}}
+			</div>
 		</div>
 	</section>
 </body>

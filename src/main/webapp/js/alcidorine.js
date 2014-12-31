@@ -154,6 +154,11 @@ var alcidorine = angular.module('alcidorineApp', [])
 
         };
     })
+    .filter('stripHtmlTags', function() {
+    	return function(text) {
+			return String(text).replace(/<[^>]+>/gm, '');
+		}
+    })
 	.controller('AppCtrl', ['$scope', '$log', '$http', '$window', 'ROOT_URL', 'API_PREFIX', function ($scope, $log, $http, $window, ROOT_URL, API_PREFIX){
 		
 		$scope.global = new Object();

@@ -31,10 +31,12 @@ div#container.small_menu {margin-top: 90px;}
 div#disabledBackground {position:fixed; top:70px; left:0; background:#282828; opacity:0.7; z-index:998; height:100%; width:100%;-o-transition:opacity 0.5s linear; -ms-transition:opacity 0.5s linear; -moz-transition:opacity 0.5s linear; -webkit-transition:opacity 0.5s linear; transition:opacity 0.5s linear;}
 
 div#container section {display: flex; flex-wrap : wrap;}
-div#container section div.thumbnail {border: 1px solid #c0c0c0; width:150px; height: 150px; padding: 10px 0; text-align: center; margin:10px; box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); cursor: pointer;}
-div#container section div.thumbnail > header {font-size: 1.1em; font-weight: bold; }
-div#container section div.thumbnail > time {font-size: 0.75em; font-style: italic; }
-div#container section div.thumbnail > footer { background: #3f3f3f; color: #fff; min-height: 30px; padding-top: 12px; }
+div#container section div.small_thumbnail {border: 1px solid #c0c0c0; width:150px; height: 150px; padding: 10px 0; text-align: center; margin:10px; box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); cursor: pointer;}
+div#container section div.small_thumbnail > footer { background: #3f3f3f; color: #fff; min-height: 30px; padding-top: 12px; }
+
+div#container section div.large_thumbnail {width: 100%; border: 1px solid #c0c0c0; margin: 5px; background: #e8e8e8; padding: 5px; display: flex; flex-wrap: wrap; cursor: pointer;}
+div#container section div.large_thumbnail > div {width: 65%;}
+div#container section div.large_thumbnail > div > header {font-weight: bold;}
 
 div#container header:first-child p:first-child { text-align: center; font-size: 1.1em; font-style: italic; margin-bottom: 20px;}
 div#container header:first-child p:first-child::before {position: relative; content: url('/img/design/dq_left.png');top: -10px; z-index: -1;}
