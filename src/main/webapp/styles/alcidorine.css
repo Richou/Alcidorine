@@ -35,7 +35,7 @@ div#container section div.small_thumbnail {border: 1px solid #c0c0c0; width:150p
 div#container section div.small_thumbnail > footer { background: #3f3f3f; color: #fff; min-height: 30px; padding-top: 12px; }
 
 div#container section div.large_thumbnail {width: 100%; border: 1px solid #c0c0c0; margin: 5px; background: #e8e8e8; padding: 5px; display: flex; flex-wrap: wrap; cursor: pointer;}
-div#container section div.large_thumbnail > div {width: 73%;}
+div#container section div.large_thumbnail > div {width: 65%;}
 div#container section div.large_thumbnail > div > header {font-weight: bold;}
 div#container section div.large_thumbnail > div > p {text-align: justify; }
 
