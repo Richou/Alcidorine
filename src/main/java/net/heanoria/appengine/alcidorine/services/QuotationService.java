@@ -25,15 +25,16 @@ public class QuotationService {
 	
 	@ApiMethod(name = "alcidorine.quotations.getRandom", path="quotations/random", httpMethod = HttpMethod.GET)
 	public Quotation getRandom() {
-		Quotation random = quotationDao.getOneRandom();
-		return random;
+		return quotationDao.getOneRandom();
 	}
 	
 	@ApiMethod(name="alcidorine.quotations.create", path="quotations/create", httpMethod = HttpMethod.POST)
 	public Quotation createQuotation(Quotation quotation) {
 		quotation = quotationDao.save(quotation);
-		if(quotation.getId() != null) return quotation;
-		throw new EntityCreationException("Cannot create entity Quotation");
+		if(quotation.getId() == null){
+			throw new EntityCreationException("Cannot create entity Quotation");
+		}
+		return quotation;
 	}
 	
 }

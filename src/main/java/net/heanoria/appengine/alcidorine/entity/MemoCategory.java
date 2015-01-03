@@ -76,7 +76,10 @@ public class MemoCategory {
 	}
 
 	public Set<MemoCategory> getChildren() {
-		if(children == null) return null;
+		if(children == null) {
+			return null;
+		}
+		
 		Set<MemoCategory> temp = new HashSet<MemoCategory>();
 		for(Ref<MemoCategory> child : this.children) {
 			temp.add(child.get());
@@ -85,7 +88,10 @@ public class MemoCategory {
 	}
 
 	public MemoCategory setChildren(List<MemoCategory> children) {
-		if(this.children == null) this.children = new HashSet<Ref<MemoCategory>>();
+		if(this.children == null) {
+			this.children = new HashSet<Ref<MemoCategory>>();
+		}
+		
 		for(MemoCategory child : children) {
 			this.children.add(Ref.create(child));
 		}
@@ -93,7 +99,10 @@ public class MemoCategory {
 	}
 
 	public Set<Memo> getMemories() {
-		if(this.memories == null) return null;
+		if(this.memories == null) {
+			return null;
+		}
+		
 		Set<Memo> temp = new HashSet<Memo>();
 		for(Ref<Memo> memo : this.memories) {
 			temp.add(memo.get());
@@ -102,7 +111,10 @@ public class MemoCategory {
 	}
 
 	public MemoCategory setMemories(Set<Memo> memories) {
-		if(this.memories == null) this.memories = new HashSet<Ref<Memo>>();
+		if(this.memories == null) {
+			this.memories = new HashSet<Ref<Memo>>();
+		}
+		
 		for(Memo memo : memories) {
 			this.memories.add(Ref.create(memo));
 		}

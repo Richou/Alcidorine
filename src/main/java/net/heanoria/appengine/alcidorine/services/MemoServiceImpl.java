@@ -39,9 +39,12 @@ public class MemoServiceImpl implements MemoService{
 	@ApiMethod(name = "alcidorine.memos.create", path = "memos/create", httpMethod = HttpMethod.POST)
 	public Memo createMemo(Memo memo) {
 		memo = memoDao.save(memo);
-		if(memo != null && memo.getId() != null) return memo;
-		logger.severe("Cannot create Memo");
-		throw new EntityCreationException("Cannot create Memo");
+		if(memo == null || memo.getId() == null) {
+			logger.severe("Cannot create Memo");
+			throw new EntityCreationException("Cannot create Memo");
+		}
+		
+		return memo;
 	}
 
 	@ApiMethod(name = "alcidorine.memos.view", path = "memos/view/{id}", httpMethod = HttpMethod.GET)
@@ -67,9 +70,11 @@ public class MemoServiceImpl implements MemoService{
 	@ApiMethod(name = "alcidorine.memos.categories.create", path = "memos/categories/create", httpMethod = HttpMethod.POST)
 	public MemoCategory createMemoCategory(MemoCategory memoCat) {
 		memoCat = memoCategoryDao.save(memoCat);
-		if(memoCat != null && memoCat.getId() != null) return memoCat;
-		logger.severe("Cannot create Memo Category");
-		throw new EntityCreationException("Cannot create MemoCategory");
+		if(memoCat == null || memoCat.getId() == null) {
+			logger.severe("Cannot create Memo Category");
+			throw new EntityCreationException("Cannot create MemoCategory");
+		}
+		return memoCat;
 	}
 	
 	@ApiMethod(name = "alcidorine.memos.categories.createAll", path = "memos/categories/createAll", httpMethod = HttpMethod.POST)
