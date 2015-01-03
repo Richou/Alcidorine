@@ -1,8 +1,12 @@
 <header>{{ node.title }}<span data-ng-show="!global.isOnMobileDevice"> - {{node.description}}</span></header>
 <section>
-	<div class="thumbnail" data-ng-repeat="memory in node.memories" data-ng-click="view(memory.id, memory.title)">
+	<div data-ng-class="global.isOnMobileDevice ? 'large_thumbnail' : 'small_thumbnail'" data-ng-repeat="memory in node.memories" data-ng-click="view(memory.id, memory.title)">
 		<img src="/img/design/memo_no_image.png" alt="image"/>
-		<footer>{{memory.title | truncate:20}}</footer>
+		<footer data-ng-if="!global.isOnMobileDevice" title="memory.title">{{memory.title | truncate:20}}</footer>
+		<div data-ng-if="global.isOnMobileDevice">
+			<header title="{{memory.title}}">{{memory.title}}</header>
+			<p>{{memory.content | stripHtmlTags | truncate:120}}
+		</div>
 	</div>
 </section>
 <div data-ng-if="node.children != null || node.memories != null" data-ng-repeat="node in node.children" data-ng-include="'/modules/categories.jspf'"></div>
