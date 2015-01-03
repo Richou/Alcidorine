@@ -7,9 +7,9 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 public class Quotation {
 	
-	public static String QUOTATION_ID_FIELD = "id";
-	public static String QUOTATION_QUOTE_FIELD = "quote";
-	public static String QUOTATION_RANK_FIELD = "rank";
+	public static final String QUOTATION_ID_FIELD = "id";
+	public static final String QUOTATION_QUOTE_FIELD = "quote";
+	public static final String QUOTATION_RANK_FIELD = "rank";
 
 	@Id
 	private Long id;

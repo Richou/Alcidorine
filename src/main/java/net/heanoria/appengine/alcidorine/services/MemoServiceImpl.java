@@ -26,7 +26,7 @@ import com.google.api.server.spi.config.Named;
 @Api(name = "alcidorine", version = "v1", description = "Alcidorine API service")
 public class MemoServiceImpl implements MemoService{
 
-	private final Logger logger = Logger.getLogger(MemoServiceImpl.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(MemoServiceImpl.class.getName());
 	
 	private MemoDao memoDao = new MemoDao();
 	private MemoCategoryDao memoCategoryDao = new MemoCategoryDao();
@@ -40,7 +40,7 @@ public class MemoServiceImpl implements MemoService{
 	public Memo createMemo(Memo memo) {
 		memo = memoDao.save(memo);
 		if(memo == null || memo.getId() == null) {
-			logger.severe("Cannot create Memo");
+			LOGGER.severe("Cannot create Memo");
 			throw new EntityCreationException("Cannot create Memo");
 		}
 		
@@ -71,7 +71,7 @@ public class MemoServiceImpl implements MemoService{
 	public MemoCategory createMemoCategory(MemoCategory memoCat) {
 		memoCat = memoCategoryDao.save(memoCat);
 		if(memoCat == null || memoCat.getId() == null) {
-			logger.severe("Cannot create Memo Category");
+			LOGGER.severe("Cannot create Memo Category");
 			throw new EntityCreationException("Cannot create MemoCategory");
 		}
 		return memoCat;
