@@ -9,8 +9,7 @@ public class EntityFetchException extends AbstractEntityException{
 	}
 	
 	public EntityFetchException(String message) {
-		super();
-		this.message = message;
+		super(message);
 	}
 
 }

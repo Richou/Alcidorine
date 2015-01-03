@@ -9,8 +9,7 @@ public class EntityCreationException extends AbstractEntityException{
 	}
 	
 	public EntityCreationException(String message) {
-		super();
-		this.message = message;
+		super(message);
 	}
 
 }
