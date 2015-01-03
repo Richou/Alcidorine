@@ -1,5 +1,6 @@
 package net.heanoria.appengine.alcidorine.entity;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -77,7 +78,7 @@ public class MemoCategory {
 
 	public Set<MemoCategory> getChildren() {
 		if(children == null) {
-			return null;
+			return Collections.<MemoCategory>emptySet();
 		}
 		
 		Set<MemoCategory> temp = new HashSet<MemoCategory>();
@@ -100,7 +101,7 @@ public class MemoCategory {
 
 	public Set<Memo> getMemories() {
 		if(this.memories == null) {
-			return null;
+			return Collections.<Memo>emptySet();
 		}
 		
 		Set<Memo> temp = new HashSet<Memo>();
