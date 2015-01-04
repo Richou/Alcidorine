@@ -5,12 +5,12 @@ import net.heanoria.appengine.alcidorine.entity.Campaign;
 
 public class CampaignDao extends ObjectifyDao<Campaign>{
 
-	static {
-		register(Campaign.class);
-	}
-	
-	public CampaignDao() {
-		super(Campaign.class);
-	}
+    static {
+        register(Campaign.class);
+    }
+    
+    public CampaignDao() {
+        super(Campaign.class);
+    }
 
 }

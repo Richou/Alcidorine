@@ -11,15 +11,15 @@ import org.aspectj.lang.reflect.MethodSignature;
 @Aspect
 public class LoggingAspect {
 
-	private static final Logger LOGGER = Logger.getLogger(LoggingAspect.class.getName());
-	
-	@Around("@annotation(net.heanoria.appengine.alcidorine.aspects.Logging)")
-	public Object loggingAround(ProceedingJoinPoint pjp) throws Throwable {
-		MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
-		Method method = methodSignature.getMethod();
-		LOGGER.info("Entering " + method.getName() + "() method");
-		Object ret = pjp.proceed();
-		LOGGER.info("Exiting " + method.getName() + "() method");
-		return ret;
-	}
+    private static final Logger LOGGER = Logger.getLogger(LoggingAspect.class.getName());
+    
+    @Around("@annotation(net.heanoria.appengine.alcidorine.aspects.Logging)")
+    public Object loggingAround(ProceedingJoinPoint pjp) throws Throwable {
+        MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
+        Method method = methodSignature.getMethod();
+        LOGGER.info("Entering " + method.getName() + "() method");
+        Object ret = pjp.proceed();
+        LOGGER.info("Exiting " + method.getName() + "() method");
+        return ret;
+    }
 }

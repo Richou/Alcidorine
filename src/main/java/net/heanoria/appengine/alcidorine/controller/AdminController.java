@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminController {
 
-	public AdminController() {}
-	
-	@RequestMapping(value = "/admin/index.do", method = RequestMethod.GET)
-	public String doAdminHome() {
-		return "admin/index";
-	}
+    public AdminController() {}
+    
+    @RequestMapping(value = "/admin/index.do", method = RequestMethod.GET)
+    public String doAdminHome() {
+        return "admin/index";
+    }
 }

@@ -5,12 +5,12 @@ import net.heanoria.appengine.alcidorine.entity.Article;
 
 public class ArticleDao extends ObjectifyDao<Article>{
 
-	static {
-		register(Article.class);
-	}
-	
-	public ArticleDao() {
-		super(Article.class);
-	}
+    static {
+        register(Article.class);
+    }
+    
+    public ArticleDao() {
+        super(Article.class);
+    }
 
 }

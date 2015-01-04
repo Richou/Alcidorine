@@ -15,11 +15,11 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 @Api(name = "alcidorine", version = "v1", description = "Alcidorine API service")
 public class CampaignService {
 
-	private CampaignDao campaignDao = new CampaignDao();
-	
-	@ApiMethod(name = "alcidorine.campaign.list",path = "campaigns/list",httpMethod = HttpMethod.GET)
-	public List<Campaign> getCampaigns() {
-		return campaignDao.listAll();
-	}
-	
+    private CampaignDao campaignDao = new CampaignDao();
+    
+    @ApiMethod(name = "alcidorine.campaign.list",path = "campaigns/list",httpMethod = HttpMethod.GET)
+    public List<Campaign> getCampaigns() {
+        return campaignDao.listAll();
+    }
+    
 }

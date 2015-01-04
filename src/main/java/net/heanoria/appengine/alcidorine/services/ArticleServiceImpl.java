@@ -22,30 +22,30 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 @Api(name = "alcidorine", version = "v1", description = "Alcidorine API service")
 public class ArticleServiceImpl implements ArticleService{
 
-	private ArticleDao articleDao = new ArticleDao();
-	
-	@ApiMethod(name = "alcidorine.articles.list",path = "articles/list",httpMethod = HttpMethod.GET)
-	public List<Article> getArticles() {
-		return articleDao.listAll();
-	}
-	
-	@ApiMethod(name = "alcidorine.articles.create", path = "articles/create", httpMethod = HttpMethod.POST)
-	public Article createArticle(Article article) {
-		article = articleDao.save(article);
-		if(article.getId() != null) {
-			return article;
-		}
-		throw new EntityCreationException("Cannot create entity Article with title ['"+ article.getTitle() +"']");
-	}
-	
-	@Logging
-	@ApiMethod(name = "alcidorine.articles.view", path="articles/view/{id}", httpMethod = HttpMethod.GET)
-	public Article getOne(@Named(ARTICLE_ID_FIELD) Long id) {
-		Article article = articleDao.get(id);
-		if(article == null) {
-			throw new EntityFetchException("Cannot find article with id ['" + id + "']");
-		}
-		return article;
-	}
-	
+    private ArticleDao articleDao = new ArticleDao();
+    
+    @ApiMethod(name = "alcidorine.articles.list",path = "articles/list",httpMethod = HttpMethod.GET)
+    public List<Article> getArticles() {
+        return articleDao.listAll();
+    }
+    
+    @ApiMethod(name = "alcidorine.articles.create", path = "articles/create", httpMethod = HttpMethod.POST)
+    public Article createArticle(Article article) {
+        article = articleDao.save(article);
+        if(article.getId() != null) {
+            return article;
+        }
+        throw new EntityCreationException("Cannot create entity Article with title ['"+ article.getTitle() +"']");
+    }
+    
+    @Logging
+    @ApiMethod(name = "alcidorine.articles.view", path="articles/view/{id}", httpMethod = HttpMethod.GET)
+    public Article getOne(@Named(ARTICLE_ID_FIELD) Long id) {
+        Article article = articleDao.get(id);
+        if(article == null) {
+            throw new EntityFetchException("Cannot find article with id ['" + id + "']");
+        }
+        return article;
+    }
+    
 }

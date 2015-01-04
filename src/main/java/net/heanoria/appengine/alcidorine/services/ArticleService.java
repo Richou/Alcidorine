@@ -8,6 +8,6 @@ import net.heanoria.appengine.alcidorine.entity.Article;
 
 public interface ArticleService {
 
-	public Article getOne(@Named(ARTICLE_ID_FIELD) Long id);
-	
+    public Article getOne(@Named(ARTICLE_ID_FIELD) Long id);
+    
 }

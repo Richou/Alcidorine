@@ -9,16 +9,16 @@ import net.heanoria.appengine.alcidorine.entity.MemoCategory;
 
 public class MemoCategoryDao extends ObjectifyDao<MemoCategory>{
 
-	static {
-		register(MemoCategory.class);
-	}
-	
-	public MemoCategoryDao() {
-		super(MemoCategory.class);
-	}
-	
-	public List<MemoCategory> fetchTopCategories() {
-		return ofy().load().type(MemoCategory.class).filter(MemoCategory.MEMOCAT_TOP_PARENT_FIELD, true).list();
-	}
+    static {
+        register(MemoCategory.class);
+    }
+    
+    public MemoCategoryDao() {
+        super(MemoCategory.class);
+    }
+    
+    public List<MemoCategory> fetchTopCategories() {
+        return ofy().load().type(MemoCategory.class).filter(MemoCategory.MEMOCAT_TOP_PARENT_FIELD, true).list();
+    }
 
 }

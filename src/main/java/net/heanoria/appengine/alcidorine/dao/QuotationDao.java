@@ -8,19 +8,19 @@ import net.heanoria.appengine.alcidorine.entity.Quotation;
 
 public class QuotationDao extends ObjectifyDao<Quotation>{
 
-	static {
-		register(Quotation.class);
-	}
-	
-	public QuotationDao() {
-		super(Quotation.class);
-	}
-	
-	public Quotation getOneRandom() {
-		
-		int number = ofy().load().type(Quotation.class).count();
-		Integer randomRank = getRandomRange(0, number - 1);
-		return ofy().load().type(Quotation.class).filter(QUOTATION_RANK_FIELD + " =", randomRank).first().now();
-	}
+    static {
+        register(Quotation.class);
+    }
+    
+    public QuotationDao() {
+        super(Quotation.class);
+    }
+    
+    public Quotation getOneRandom() {
+        
+        int number = ofy().load().type(Quotation.class).count();
+        Integer randomRank = getRandomRange(0, number - 1);
+        return ofy().load().type(Quotation.class).filter(QUOTATION_RANK_FIELD + " =", randomRank).first().now();
+    }
 
 }

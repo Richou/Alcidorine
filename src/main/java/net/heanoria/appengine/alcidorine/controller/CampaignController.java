@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CampaignController {
 
-	public CampaignController () {}
-	
-	@RequestMapping(value = "/campaign.do", method = RequestMethod.GET)
-	public String doHome() {
-		
-		return "campaign/index";
-	}
+    public CampaignController () {}
+    
+    @RequestMapping(value = "/campaign.do", method = RequestMethod.GET)
+    public String doHome() {
+        
+        return "campaign/index";
+    }
 }

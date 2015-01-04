@@ -16,25 +16,25 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 @Api(name = "alcidorine", version = "v1", description = "Alcidorine API service")
 public class QuotationService {
 
-	private QuotationDao quotationDao = new QuotationDao();
-	
-	@ApiMethod(name = "alcidorine.quotations.list", path="quotations/list", httpMethod = HttpMethod.GET)
-	public List<Quotation> listAll() {
-		return quotationDao.listAll();
-	}
-	
-	@ApiMethod(name = "alcidorine.quotations.getRandom", path="quotations/random", httpMethod = HttpMethod.GET)
-	public Quotation getRandom() {
-		return quotationDao.getOneRandom();
-	}
-	
-	@ApiMethod(name="alcidorine.quotations.create", path="quotations/create", httpMethod = HttpMethod.POST)
-	public Quotation createQuotation(Quotation quotation) {
-		quotation = quotationDao.save(quotation);
-		if(quotation.getId() == null){
-			throw new EntityCreationException("Cannot create entity Quotation");
-		}
-		return quotation;
-	}
-	
+    private QuotationDao quotationDao = new QuotationDao();
+    
+    @ApiMethod(name = "alcidorine.quotations.list", path="quotations/list", httpMethod = HttpMethod.GET)
+    public List<Quotation> listAll() {
+        return quotationDao.listAll();
+    }
+    
+    @ApiMethod(name = "alcidorine.quotations.getRandom", path="quotations/random", httpMethod = HttpMethod.GET)
+    public Quotation getRandom() {
+        return quotationDao.getOneRandom();
+    }
+    
+    @ApiMethod(name="alcidorine.quotations.create", path="quotations/create", httpMethod = HttpMethod.POST)
+    public Quotation createQuotation(Quotation quotation) {
+        quotation = quotationDao.save(quotation);
+        if(quotation.getId() == null){
+            throw new EntityCreationException("Cannot create entity Quotation");
+        }
+        return quotation;
+    }
+    
 }
