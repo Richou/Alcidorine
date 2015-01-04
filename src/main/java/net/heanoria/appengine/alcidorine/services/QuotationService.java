@@ -29,8 +29,8 @@ public class QuotationService {
     }
     
     @ApiMethod(name="alcidorine.quotations.create", path="quotations/create", httpMethod = HttpMethod.POST)
-    public Quotation createQuotation(Quotation quotation) {
-        quotation = quotationDao.save(quotation);
+    public Quotation createQuotation(Quotation entity) {
+        Quotation quotation = quotationDao.save(entity);
         if(quotation.getId() == null){
             throw new EntityCreationException("Cannot create entity Quotation");
         }

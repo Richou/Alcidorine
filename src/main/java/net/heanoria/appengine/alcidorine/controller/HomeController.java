@@ -19,7 +19,7 @@ public class HomeController {
     public HomeController() {}
     
     @RequestMapping(value = "/index.do", method = RequestMethod.GET)
-    public String doHome(ModelMap model) {
+    public String doHome() {
         return "home/index";
     }
     

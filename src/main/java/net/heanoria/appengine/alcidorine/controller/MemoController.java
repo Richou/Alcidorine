@@ -19,7 +19,7 @@ public class MemoController {
     public MemoController(){}
     
     @RequestMapping(value = "/memos.do", method = RequestMethod.GET)
-    public String doMemosPage(ModelMap model) {
+    public String doMemosPage() {
         return "memo/index";
     }
     

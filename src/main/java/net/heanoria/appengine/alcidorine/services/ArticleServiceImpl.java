@@ -30,12 +30,12 @@ public class ArticleServiceImpl implements ArticleService{
     }
     
     @ApiMethod(name = "alcidorine.articles.create", path = "articles/create", httpMethod = HttpMethod.POST)
-    public Article createArticle(Article article) {
-        article = articleDao.save(article);
+    public Article createArticle(Article entity) {
+        Article article = articleDao.save(entity);
         if(article.getId() != null) {
             return article;
         }
-        throw new EntityCreationException("Cannot create entity Article with title ['"+ article.getTitle() +"']");
+        throw new EntityCreationException("Cannot create entity Article with title ['"+ entity.getTitle() +"']");
     }
     
     @Logging
