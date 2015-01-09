@@ -62,3 +62,5 @@ div#memosContainer > div div > header {height: 20px; font-weight: bold; display:
 div#memosContainer > div div > header > span {font-size: 0.85em; font-style: italic; text-transform: none; font-weight: normal; white-space: nowrap;}
 
 div#memosContainer > div div div header {margin: 0 0 0 50px;}
+
+div#throbber {opacity: 0; position: fixed; left:0; top:0; z-index:1; background: #b50c0c; height: 2px; width: 0;box-shadow: 0 0 10px 0;-o-transition:all 0.5s linear; -ms-transition:all 0.5s linear; -moz-transition:all 0.5s linear; -webkit-transition:all 0.5s linear; transition:all 0.5s linear;}

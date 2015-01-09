@@ -45,5 +45,6 @@
 <div id="container" data-ng-class="global.menuClass">
 <decorator:body></decorator:body>
 </div>
+<div id="throbber"></div>
 </body>
 </html>
