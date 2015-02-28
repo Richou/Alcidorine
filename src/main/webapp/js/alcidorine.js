@@ -16,27 +16,44 @@ var alcidorine = angular.module('alcidorineApp', [])
 			var throbberElement = $compile('<hnr-throbber></hnr-throbber')($scope);
 			parent.appendChild(throbberElement[0]);
 
+			var intervalId = 0;
+			var isBusy = false;
+			
+			var value = this.value;
+			var counter = 0;
+			
 			return {
 				start : function() {
 					this.show();
-					
+					var that = this;
+					if(!isBusy) {
+						intervalId = setInterval(function() {
+							value = counter / (counter + 1) * 100;
+							counter++;
+							that.updateValue(value);
+						}, 200);
+						isBusy = true;
+					}
 				},
 				
 				complete : function() {
-					
+					var that = this;
+					clearInterval(intervalId);
+					this.updateValue(100);
+					setTimeout(function(){
+						that.hide();
+					}, 1000);
+					isBusy = false;
+					counter = 0;
+					value = 0;
 				},
 				
-				stop : function() {
-					
-				},
-				
-				reset : function() {
-					
-				},
-				
-				setValue: function() {
-					
-				},
+				updateValue: function (newValue) {
+                    $scope.value = newValue;
+                    if(!$scope.$$phase) {
+                        $scope.$apply();
+                    }
+                },
 				
 				show: function() {
 					throbberElement.children().css('opacity', '1');
@@ -184,12 +201,18 @@ var alcidorine = angular.module('alcidorineApp', [])
 			templateUrl: '/modules/categories.jspf'
 		}
 	}])
-	.directive('hnrThrobber', ['$log', '$compile', function($log, $compile){
+	.directive('hnrThrobber', ['$log', '$rootScope', '$compile', function($log, $rootScope, $compile){
 		var throbberObject = {
 			replate: true,
 			restrict: 'E',
 			link: function($scope, $element, $attrs, $controller) {
-				
+				$rootScope.$watch('value', function (newVal) {
+					console.log("new Value : " + newVal);
+                    if (newVal !== undefined || newVal !== null) {
+                        $scope.counter = newVal;
+                        $element.eq(0).children().css('width', newVal + '%');
+                    }
+                });
 			},
 			template: '<div id="throbber"></div>'	
 		};
@@ -220,8 +243,6 @@ var alcidorine = angular.module('alcidorineApp', [])
     })
 	.controller('AppCtrl', ['$scope', '$log', '$http', '$window', 'ROOT_URL', 'API_PREFIX', 'throbber', function ($scope, $log, $http, $window, ROOT_URL, API_PREFIX, throbber){
 		
-		throbber.start();
-		
 		$scope.global = new Object();
 		$scope.quotation = null;
 		
@@ -235,16 +256,15 @@ var alcidorine = angular.module('alcidorineApp', [])
 		}
 		
 		$scope.getRandomQuotation = function() {
-			throbber.start();
 			gapi.client.alcidorine.alcidorine.quotations.getRandom().execute(function(resp) {
 				$scope.quotation = resp;
 				$scope.$digest();
-				throbber.complete();
 			})
 		}
 		
 		$scope.changeEndpointLibStatus = function(newStatus) {
 			$scope.global.endpointLibLoaded = newStatus;
+			throbber.complete();
 		}
 		
 		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
@@ -254,6 +274,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 		})
 		
 		$window.init = function() {
+			throbber.start();
 			$scope.$apply($scope.global.loadEndpointLib);
 		}
 	
@@ -287,7 +308,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 		
 		$scope.resizeListener();
 	}])
-	.controller('ArticleCtrl', ['$scope', '$log', '$sce', '$window', 'ROOT_URL', 'StringUtil', function($scope, $log, $sce, $window, ROOT_URL, StringUtil) {
+	.controller('ArticleCtrl', ['$scope', '$log', '$sce', '$window', 'ROOT_URL', 'StringUtil', 'throbber', function($scope, $log, $sce, $window, ROOT_URL, StringUtil, throbber) {
 		
 		$scope.articles = [];
 		
@@ -309,6 +330,18 @@ var alcidorine = angular.module('alcidorineApp', [])
 					$scope.articles[i].image = "/img/design/article_no_image.png";
 				}
 			}
+		}
+		
+		$scope.startThrobber = function() {
+			throbber.start();
+		}
+		
+		$scope.stopThobber = function() {
+			throbber.complete();
+		}
+		
+		$scope.logThobberId = function() {
+			throbber.logging();
 		}
 		
 		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
