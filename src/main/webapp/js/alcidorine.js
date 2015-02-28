@@ -264,7 +264,6 @@ var alcidorine = angular.module('alcidorineApp', [])
 		
 		$scope.changeEndpointLibStatus = function(newStatus) {
 			$scope.global.endpointLibLoaded = newStatus;
-			throbber.complete();
 		}
 		
 		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
@@ -274,7 +273,6 @@ var alcidorine = angular.module('alcidorineApp', [])
 		})
 		
 		$window.init = function() {
-			throbber.start();
 			$scope.$apply($scope.global.loadEndpointLib);
 		}
 	
@@ -330,22 +328,12 @@ var alcidorine = angular.module('alcidorineApp', [])
 					$scope.articles[i].image = "/img/design/article_no_image.png";
 				}
 			}
-		}
-		
-		$scope.startThrobber = function() {
-			throbber.start();
-		}
-		
-		$scope.stopThobber = function() {
 			throbber.complete();
-		}
-		
-		$scope.logThobberId = function() {
-			throbber.logging();
 		}
 		
 		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
 			if(newValue) {
+				throbber.start();
 				$scope.getArticles();
 			}
 		})
