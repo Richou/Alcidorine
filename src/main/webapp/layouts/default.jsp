@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
 <link rel="stylesheet" type="text/css" href="${contextPath}/styles/alcidorine.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
 <title><decorator:title /> - heanoria</title>
 <decorator:head></decorator:head>
 </head>
@@ -45,6 +45,5 @@
 <div id="container" data-ng-class="global.menuClass">
 <decorator:body></decorator:body>
 </div>
-<div id="throbber"></div>
 </body>
 </html>

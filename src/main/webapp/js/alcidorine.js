@@ -7,10 +7,43 @@ var alcidorine = angular.module('alcidorineApp', [])
 	.provider('throbber', function() {
 		'use strict';
 		
-		this.$get = ['$log', function($log){
+		this.value = 0;
+		
+		this.$get = ['$document', '$rootScope', '$compile', '$log', function($document, $rootScope, $compile, $log){
+			var parent = $document.find("body")[0];
+			var $scope = $rootScope;
+			
+			var throbberElement = $compile('<hnr-throbber></hnr-throbber')($scope);
+			parent.appendChild(throbberElement[0]);
+
 			return {
 				start : function() {
+					this.show();
 					
+				},
+				
+				complete : function() {
+					
+				},
+				
+				stop : function() {
+					
+				},
+				
+				reset : function() {
+					
+				},
+				
+				setValue: function() {
+					
+				},
+				
+				show: function() {
+					throbberElement.children().css('opacity', '1');
+				},
+				
+				hide: function() {
+					throbberElement.children().css('opacity', '0');
 				}
 			};
 		}];
@@ -127,26 +160,41 @@ var alcidorine = angular.module('alcidorineApp', [])
 			}
 		}
 	}])
-	.directive('resize', function($window) {
-		return function (scope) {
-			var window = angular.element($window);
-	
-			var onResizeEventHandler = function() {
-				scope.$apply(scope.resizeListener);
+	.directive('resize', ['$window', '$log', function($window, $log) {
+		return {
+			link: function($scope, $element, $attrs, $controller) {
+				var window = angular.element($window);
+				
+				var onResizeEventHandler = function() {
+					$scope.$apply($scope.resizeListener);
+				}
+				
+				window.on('resize', onResizeEventHandler);
+				$scope.$on('$destroy', function(){
+					window.off("resize", onResizeEventHandler)
+				});
 			}
-			
-			window.on("resize", onResizeEventHandler);
-			scope.$on("$destroy", function(){
-				window.off("resize", onResizeEventHandler)
-			});
+				
 		}
-	})
+	}])
 	.directive('treeview', ['$log', '$compile', function($log, $compile) {
 		return {
 			restrict : 'A',
 			scope : {treeModel:'=treeview'},
 			templateUrl: '/modules/categories.jspf'
 		}
+	}])
+	.directive('hnrThrobber', ['$log', '$compile', function($log, $compile){
+		var throbberObject = {
+			replate: true,
+			restrict: 'E',
+			link: function($scope, $element, $attrs, $controller) {
+				
+			},
+			template: '<div id="throbber"></div>'	
+		};
+		
+		return throbberObject;
 	}])
 	.filter('truncate', function () {
         return function (text, length, end) {
@@ -187,9 +235,11 @@ var alcidorine = angular.module('alcidorineApp', [])
 		}
 		
 		$scope.getRandomQuotation = function() {
+			throbber.start();
 			gapi.client.alcidorine.alcidorine.quotations.getRandom().execute(function(resp) {
 				$scope.quotation = resp;
 				$scope.$digest();
+				throbber.complete();
 			})
 		}
 		
