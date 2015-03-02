@@ -29,7 +29,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 					if(!isBusy) {
 						intervalId = setInterval(function() {
 							value = counter / (counter + 1) * 100;
-							counter++;
+							counter = counter + 0.25;
 							that.updateValue(value);
 						}, 200);
 						isBusy = true;
@@ -207,7 +207,6 @@ var alcidorine = angular.module('alcidorineApp', [])
 			restrict: 'E',
 			link: function($scope, $element, $attrs, $controller) {
 				$rootScope.$watch('value', function (newVal) {
-					console.log("new Value : " + newVal);
                     if (newVal !== undefined || newVal !== null) {
                         $scope.counter = newVal;
                         $element.eq(0).children().css('width', newVal + '%');
@@ -273,6 +272,7 @@ var alcidorine = angular.module('alcidorineApp', [])
 		})
 		
 		$window.init = function() {
+			throbber.start();
 			$scope.$apply($scope.global.loadEndpointLib);
 		}
 	
@@ -333,13 +333,12 @@ var alcidorine = angular.module('alcidorineApp', [])
 		
 		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
 			if(newValue) {
-				throbber.start();
 				$scope.getArticles();
 			}
 		})
 		
 	}])
-	.controller('MemoCtrl', ['$scope', '$log', '$window', 'ROOT_URL', 'StringUtil', function($scope, $log, $window, ROOT_URL, StringUtil){
+	.controller('MemoCtrl', ['$scope', '$log', '$window', 'ROOT_URL', 'StringUtil', 'throbber', function($scope, $log, $window, ROOT_URL, StringUtil, throbber){
 		$scope.memos = [];
 		$scope.topCategories = [];
 		
@@ -355,11 +354,28 @@ var alcidorine = angular.module('alcidorineApp', [])
 		
 		$scope.fetchCategories = function(items) {
 			$scope.topCategories = items;
+			throbber.complete();
 		}
 		
 		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
 			if(newValue) {
 				$scope.getTopCategories();
+			}
+		})
+	}])
+	.controller('CampaignCtrl', ['$scope', '$log', 'throbber', function($scope, $log, throbber) {
+		$scope.campaigns = [];
+		
+		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
+			if(newValue) {
+				throbber.complete();
+			}
+		})
+	}])
+	.controller('ItemsCtrl', ['$scope', '$log', 'throbber', function($scope, $log, throbber) {
+		$scope.$watch("global.endpointLibLoaded", function(newValue, oldValue) {
+			if(newValue) {
+				throbber.complete();
 			}
 		})
 	}])
