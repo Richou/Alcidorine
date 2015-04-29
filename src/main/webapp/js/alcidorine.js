@@ -1,5 +1,5 @@
 function init() {
-	window.init();
+	setTimeout(window.init, 1);
 }
 var alcidorine = angular.module('alcidorineApp', [])
 	.value('API_PREFIX', '_ah/api')
